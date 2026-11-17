@@ -17,6 +17,7 @@ func guess() int {
 }
 
 func main() {
+
 	// generate a random number between 1 and 100. the +1 shifts the int by 1
 	min, max := 1, 100
 
@@ -24,12 +25,32 @@ func main() {
 
 	fmt.Println("The random int is: ", n)
 
-	// player guesses
+	numOfGuesses := 0
 
-	fmt.Println("Player guess is:", guess())
+	for {
+		// player guesses
+		playerGuess := guess()
 
-	// program should reply higher or lower
+		fmt.Println("Player guess is:", playerGuess)
 
+		// program should reply higher or lower
+		// if less than
+		if playerGuess < n {
+			fmt.Println("Too low, guess higher!")
+			numOfGuesses++
+		}
+		// if greater than
+		if playerGuess > n {
+			fmt.Println("Too high, guess lower!")
+			numOfGuesses++
+		}
+		// if equal
+		if playerGuess == n {
+			fmt.Println("You win!")
+			numOfGuesses++
+			break
+		}
+	}
 	// count # of guesses and show total at the end
-
+	fmt.Println("Number of guesses:", numOfGuesses)
 }
