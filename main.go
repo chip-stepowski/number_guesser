@@ -47,7 +47,7 @@ func main() {
 		// player guesses
 		playerGuess := guess()
 
-		fmt.Println("Player guess is:", playerGuess)
+		fmt.Println("Player guessed:", playerGuess)
 
 		// program should reply higher or lower
 		// if less than
@@ -63,7 +63,13 @@ func main() {
 			fmt.Println("You win!")
 			break
 		}
+		if numOfGuesses > 7 {
+			fmt.Println("Sorry, you took more than 7 guesses!")
+			break
+		}
 	}
 	// count # of guesses and show total at the end
-	fmt.Println("Number of guesses:", numOfGuesses)
+	if numOfGuesses <= 7 {
+		fmt.Println("Total number of guesses:", numOfGuesses)
+	}
 }
