@@ -5,7 +5,7 @@
 ## Todo
 | Task | Status |
 |--------|--------|
-|Program picks a random number from 1 to 100| Not Started  |
+|Program picks a random number from 1 to 100| Done  |
 |The player guesses; the program replies higher or lower.| Not Started  |
 |Count guesses and show the total at the end.| Not Started  |
 |Put the input-reading logic in its own function that returns (int, error).| Not Started  |
