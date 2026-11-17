@@ -1,19 +1,36 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math/rand/v2"
+	"os"
+	"strconv"
+	"strings"
 )
 
 // declare the guess function with return type of int
 func guess() int {
-	var i int
+	scanner := bufio.NewScanner(os.Stdin)
 
-	fmt.Println("Enter a number between 1 and 100:")
+	for {
+		fmt.Println("Enter a number between 1 and 100:")
+		if !scanner.Scan() {
+			return 0
+		}
 
-	fmt.Scan(&i)
-
-	return i
+		input := strings.TrimSpace(scanner.Text())
+		num, err := strconv.Atoi(input)
+		if err != nil {
+			fmt.Println("Invalid input, please enter a valid number.")
+			continue
+		}
+		if num > 100 || num < 1 {
+			fmt.Println("Invalid input, input is smaller than 1 or greater than 100.")
+			continue
+		}
+		return num
+	}
 }
 
 func main() {
@@ -23,11 +40,10 @@ func main() {
 
 	n := rand.IntN(max-min+1) + min
 
-	fmt.Println("The random int is: ", n)
-
 	numOfGuesses := 0
 
 	for {
+		numOfGuesses++
 		// player guesses
 		playerGuess := guess()
 
@@ -37,17 +53,14 @@ func main() {
 		// if less than
 		if playerGuess < n {
 			fmt.Println("Too low, guess higher!")
-			numOfGuesses++
 		}
 		// if greater than
 		if playerGuess > n {
 			fmt.Println("Too high, guess lower!")
-			numOfGuesses++
 		}
 		// if equal
 		if playerGuess == n {
 			fmt.Println("You win!")
-			numOfGuesses++
 			break
 		}
 	}
